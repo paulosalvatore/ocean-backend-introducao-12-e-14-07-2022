@@ -30,7 +30,7 @@ app.get("/herois/:id", function (req, res) {
   const id = req.params.id;
 
   // Acessar o registro na lista, usando o ID
-  const item = heois[id - 1];
+  const item = herois[id - 1];
 
   // Enviar o registro encontrado
   res.send(item);
@@ -48,6 +48,21 @@ app.post("/herois", function (req, res) {
 
   // Exibe uma mensagem de sucesso
   res.send("Item criado com sucesso!");
+});
+
+// [PUT] /herois/:id -> Update (Atualizar)
+app.put("/herois/:id", function (req, res) {
+  // Pegar o ID
+  const id = req.params.id;
+
+  // Pegar o item a ser atualizado
+  const item = req.body.nome;
+
+  // Atualizar na lista o valor recebido
+  herois[id - 1] = item;
+
+  // Envio uma mensagem de sucesso
+  res.send("Item atualizado com sucesso!");
 });
 
 app.listen(3000, function () {
